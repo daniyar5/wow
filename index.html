@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Kanit:wght@300&family=Work+Sans:wght@300&display=swap");
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="meow">
+        <div class="audio">
+          <audio id="audio" autoplay src="./songs/ANGELS & DEMONS.mp3"></audio>
+        </div>
+        <div class="img">
+          <img src="./img/jxdn.jpg" alt="" />
+        </div>
+
+        <div class="name">
+          <div class="h1">
+            <h1>ANGELS & DEMONS</h1>
+          </div>
+
+          <div class="h2"><h2>jxdn</h2></div>
+        </div>
+        <div class="input"><input type="range" min="0" id="cur" /></div>
+        <div class="icons">
+          <button id="pause">
+            <img src="./icons/pause.png" alt="" />
+          </button>
+
+          <button id="play">
+            <img src="./icons/play-button-arrowhead.png" alt="" />
+          </button>
+
+          <button id="volup">
+            <img src="./icons/plus.png" alt="" />
+          </button>
+
+          <button id="voldown">
+            <img src="./icons/minus-sign.png" alt="" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let audio = document.getElementById("audio");
+      let pause = document.getElementById("pause");
+      let play = document.getElementById("play");
+      let volup = document.getElementById("volup");
+      let voldown = document.getElementById("voldown");
+      let cur = document.getElementById("cur");
+      cur.value = 0;
+      cur.max = audio.duration;
+
+      pause.addEventListener("click", function () {
+        audio.pause();
+      });
+
+      play.addEventListener("click", function () {
+        audio.play();
+      });
+
+      volup.addEventListener("click", function () {
+        audio.volume = audio.volume + 0.1;
+      });
+
+      voldown.addEventListener("click", function () {
+        audio.volume = audio.volume - 0.1;
+      });
+
+      audio.addEventListener("timeupdate", function () {
+        percentPlayed = (audio.currentTime / audio.duration) * 100;
+
+        cur.value = percentPlayed;
+      });
+    </script>
+  </body>
+</html>
